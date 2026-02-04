@@ -1,36 +1,38 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Living Ambientes Planejados - Portfólio Institucional
 
-## Getting Started
+## Visão do Projeto
 
-First, run the development server:
+Este é o portfólio institucional de alto padrão da Living Ambientes Planejados, uma montadora de móveis sob medida. Nossa missão é transmitir sofisticação, exclusividade e converter visitantes em leads qualificados via WhatsApp.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## Tech Stack & Requisitos Técnicos
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- Framework: Next.js 15+ (App Router)
+- Linguagem: TypeScript (Strict Mode)
+- Estilização: Tailwind CSS v4 (Uso obrigatório de @import "tailwindcss" e configurações de tema via variáveis de CSS no @theme)
+- Componentes: Baseados em Shadcn/UI, focados em responsividade Mobile First
+- Ícones: Lucide React
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Arquitetura e Princípios de Código
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- SRP (Single Responsibility Principle): Componentes pequenos e especializados
+- Estrutura de Pastas:
+  - `src/components/ui`: Átomos e componentes base
+  - `src/components/layout`: Header, Footer
+  - `src/components/sections`: Seções da Landing Page (Hero, Portfolio, LeadGen)
+  - `src/constants`: Centralização de textos, links e categorias
+- Documentação: Uso de TSDoc para explicar a lógica de componentes complexos
+- Git: Seguir o padrão Conventional Commits (feat:, fix:, style:, arch:)
 
-## Learn More
+## Inicialização do Projeto
 
-To learn more about Next.js, take a look at the following resources:
+1. Certifique-se de ter o Node.js instalado em sua máquina.
+2. Clone este repositório para o seu ambiente local.
+3. Instale as dependências do projeto executando `npm install` ou `yarn install`.
+4. Inicie o servidor local executando `npm run dev` ou `yarn dev`.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Diretrizes de Implementação
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+1. Sempre comece a estilização pelo Mobile.
+2. Não utilize componentes de biblioteca externa sem perguntar (prefira Tailwind CSS e componentes customizados).
+3. O site não possui Login nem banco de dados; todas as informações são estáticas ou consumidas de um arquivo de constantes.
+4. Foque em Performance (LCP/FID), otimizando o carregamento de imagens e vídeos.
