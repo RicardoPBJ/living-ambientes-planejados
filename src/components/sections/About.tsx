@@ -4,6 +4,10 @@
 import { motion } from "framer-motion";
 import Image from "next/image";
 
+/**
+ * Seção Sobre Nós.
+ * Apresenta a filosofia da empresa e estatísticas de experiência.
+ */
 export function About() {
   return (
     <section id="sobre" className="py-24 bg-stone-50">

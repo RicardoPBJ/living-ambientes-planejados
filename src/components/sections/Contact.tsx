@@ -6,6 +6,10 @@ import { motion } from "framer-motion";
 import { MessageCircle } from "lucide-react";
 import { ContactModal } from "./ContactModal";
 
+/**
+ * Seção de Chamada para Ação (CTA) de Contato.
+ * Inclui um botão que abre o modal de orçamento.
+ */
 export function Contact() {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
