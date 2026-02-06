@@ -3,9 +3,28 @@
 import { useState } from "react";
 import Link from "next/link";
 import { Menu, X } from "lucide-react";
+import { smoothScroll } from "@/utils/smoothScroll";
+import { motion, AnimatePresence } from "framer-motion";
 
 export function Header() {
   const [isOpen, setIsOpen] = useState(false);
+
+  const handleScroll = (
+    e: React.MouseEvent<HTMLAnchorElement, MouseEvent>,
+    targetId: string,
+  ) => {
+    e.preventDefault();
+    setIsOpen(false);
+    smoothScroll(targetId);
+  };
+
+  const handleLogoClick = (
+    e: React.MouseEvent<HTMLAnchorElement, MouseEvent>,
+  ) => {
+    e.preventDefault();
+    setIsOpen(false);
+    smoothScroll(); // Sem argumentos = rolar para o topo
+  };
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-md border-b border-stone-100">
@@ -13,6 +32,7 @@ export function Header() {
         {/* Logo */}
         <Link
           href="/"
+          onClick={handleLogoClick}
           className="font-serif text-2xl font-bold tracking-tighter text-zinc-900 hover:opacity-80 transition-opacity"
         >
           LIVING
@@ -21,19 +41,22 @@ export function Header() {
         {/* Desktop Navigation */}
         <nav className="hidden md:flex items-center gap-8">
           <Link
-            href="#portfolio"
-            className="text-sm font-medium text-zinc-600 hover:text-zinc-900 transition-colors tracking-wide"
-          >
-            Portfólio
-          </Link>
-          <Link
             href="#sobre"
+            onClick={(e) => handleScroll(e, "sobre")}
             className="text-sm font-medium text-zinc-600 hover:text-zinc-900 transition-colors tracking-wide"
           >
             A Marca
           </Link>
           <Link
+            href="#portfolio"
+            onClick={(e) => handleScroll(e, "portfolio")}
+            className="text-sm font-medium text-zinc-600 hover:text-zinc-900 transition-colors tracking-wide"
+          >
+            Portfólio
+          </Link>
+          <Link
             href="#contato"
+            onClick={(e) => handleScroll(e, "contato")}
             className="text-sm font-medium text-zinc-600 hover:text-zinc-900 transition-colors tracking-wide"
           >
             Contato
@@ -51,31 +74,39 @@ export function Header() {
       </div>
 
       {/* Mobile Navigation Overlay */}
-      {isOpen && (
-        <div className="md:hidden absolute top-20 left-0 w-full bg-white border-b border-stone-100 p-6 flex flex-col gap-4 shadow-lg">
-          <Link
-            href="#portfolio"
-            className="text-lg font-medium text-zinc-600 hover:text-zinc-900 transition-colors"
-            onClick={() => setIsOpen(false)}
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            transition={{ duration: 0.3, ease: "easeOut" }}
+            className="md:hidden absolute top-20 left-0 w-full bg-white/80 backdrop-blur-md border-b border-stone-100 p-6 flex flex-col items-center gap-4 shadow-lg"
           >
-            Portfólio
-          </Link>
-          <Link
-            href="#sobre"
-            className="text-lg font-medium text-zinc-600 hover:text-zinc-900 transition-colors"
-            onClick={() => setIsOpen(false)}
-          >
-            A Marca
-          </Link>
-          <Link
-            href="#contato"
-            className="text-lg font-medium text-zinc-600 hover:text-zinc-900 transition-colors"
-            onClick={() => setIsOpen(false)}
-          >
-            Contato
-          </Link>
-        </div>
-      )}
+            <Link
+              href="#sobre"
+              className="text-lg font-medium text-zinc-600 hover:text-zinc-900 transition-colors"
+              onClick={(e) => handleScroll(e, "sobre")}
+            >
+              A Marca
+            </Link>
+            <Link
+              href="#portfolio"
+              className="text-lg font-medium text-zinc-600 hover:text-zinc-900 transition-colors"
+              onClick={(e) => handleScroll(e, "portfolio")}
+            >
+              Portfólio
+            </Link>
+            <Link
+              href="#contato"
+              className="text-lg font-medium text-zinc-600 hover:text-zinc-900 transition-colors"
+              onClick={(e) => handleScroll(e, "contato")}
+            >
+              Contato
+            </Link>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </header>
   );
 }

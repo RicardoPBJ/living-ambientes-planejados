@@ -1,8 +1,18 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { smoothScroll } from "@/utils/smoothScroll";
 
+/**
+ * Seção Hero (Destaque principal).
+ * Exibe um vídeo de fundo e a chamada principal da marca.
+ */
 export function Hero() {
+  const handleScroll = (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
+    e.preventDefault();
+    smoothScroll("portfolio");
+  };
+
   return (
     <section className="relative h-screen w-full overflow-hidden bg-zinc-950">
       {/* Background Video */}
@@ -50,6 +60,7 @@ export function Hero() {
         >
           <a
             href="#portfolio"
+            onClick={handleScroll}
             className="inline-block px-10 py-4 border border-white/30 bg-white/5 backdrop-blur-sm text-white font-medium text-sm tracking-[0.2em] uppercase hover:bg-white hover:text-zinc-950 transition-all duration-300"
           >
             Ver Portfólio
