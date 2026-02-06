@@ -21,6 +21,7 @@ Este é o portfólio institucional de alto padrão da Living Ambientes Planejado
   - `src/components/layout`: Header, Footer
   - `src/components/sections`: Seções da Landing Page (Hero, Portfolio, LeadGen)
   - `src/constants`: Centralização de textos, links e categorias
+  - `src/utils`: Funções utilitárias e helpers (ex: smoothScroll)
 - Documentação: Uso de TSDoc para explicar a lógica de componentes complexos
 - Git: Seguir o padrão Conventional Commits (feat:, fix:, style:, arch:)
 
