@@ -15,6 +15,7 @@ Este é o portfólio institucional de alto padrão da Living Ambientes Planejado
 ## Arquitetura e Princípios de Código
 
 - SRP (Single Responsibility Principle): Componentes pequenos e especializados
+- **Navegação One Page:** A estrutura do site foi definida como uma Landing Page contínua. O Header utiliza âncoras (`#portfolio`, `#sobre`) para navegar entre as seções, garantindo um storytelling linear e maior conversão.
 - Estrutura de Pastas:
   - `src/components/ui`: Átomos e componentes base
   - `src/components/layout`: Header, Footer
