@@ -4,6 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 import { Menu, X } from "lucide-react";
 import { smoothScroll } from "@/utils/smoothScroll";
+import { motion, AnimatePresence } from "framer-motion";
 
 export function Header() {
   const [isOpen, setIsOpen] = useState(false);
@@ -40,18 +41,18 @@ export function Header() {
         {/* Desktop Navigation */}
         <nav className="hidden md:flex items-center gap-8">
           <Link
-            href="#portfolio"
-            onClick={(e) => handleScroll(e, "portfolio")}
-            className="text-sm font-medium text-zinc-600 hover:text-zinc-900 transition-colors tracking-wide"
-          >
-            Portfólio
-          </Link>
-          <Link
             href="#sobre"
             onClick={(e) => handleScroll(e, "sobre")}
             className="text-sm font-medium text-zinc-600 hover:text-zinc-900 transition-colors tracking-wide"
           >
             A Marca
+          </Link>
+          <Link
+            href="#portfolio"
+            onClick={(e) => handleScroll(e, "portfolio")}
+            className="text-sm font-medium text-zinc-600 hover:text-zinc-900 transition-colors tracking-wide"
+          >
+            Portfólio
           </Link>
           <Link
             href="#contato"
@@ -73,31 +74,39 @@ export function Header() {
       </div>
 
       {/* Mobile Navigation Overlay */}
-      {isOpen && (
-        <div className="md:hidden absolute top-20 left-0 w-full bg-white border-b border-stone-100 p-6 flex flex-col gap-4 shadow-lg">
-          <Link
-            href="#portfolio"
-            className="text-lg font-medium text-zinc-600 hover:text-zinc-900 transition-colors"
-            onClick={(e) => handleScroll(e, "portfolio")}
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            transition={{ duration: 0.3, ease: "easeOut" }}
+            className="md:hidden absolute top-20 left-0 w-full bg-white/80 backdrop-blur-md border-b border-stone-100 p-6 flex flex-col items-center gap-4 shadow-lg"
           >
-            Portfólio
-          </Link>
-          <Link
-            href="#sobre"
-            className="text-lg font-medium text-zinc-600 hover:text-zinc-900 transition-colors"
-            onClick={(e) => handleScroll(e, "sobre")}
-          >
-            A Marca
-          </Link>
-          <Link
-            href="#contato"
-            className="text-lg font-medium text-zinc-600 hover:text-zinc-900 transition-colors"
-            onClick={(e) => handleScroll(e, "contato")}
-          >
-            Contato
-          </Link>
-        </div>
-      )}
+            <Link
+              href="#sobre"
+              className="text-lg font-medium text-zinc-600 hover:text-zinc-900 transition-colors"
+              onClick={(e) => handleScroll(e, "sobre")}
+            >
+              A Marca
+            </Link>
+            <Link
+              href="#portfolio"
+              className="text-lg font-medium text-zinc-600 hover:text-zinc-900 transition-colors"
+              onClick={(e) => handleScroll(e, "portfolio")}
+            >
+              Portfólio
+            </Link>
+            <Link
+              href="#contato"
+              className="text-lg font-medium text-zinc-600 hover:text-zinc-900 transition-colors"
+              onClick={(e) => handleScroll(e, "contato")}
+            >
+              Contato
+            </Link>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </header>
   );
 }
