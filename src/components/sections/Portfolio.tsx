@@ -1,63 +1,37 @@
+/*** src/components/sections/Portfolio.tsx ***/
 "use client";
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import {
+  PORTFOLIO_CATEGORIES,
+  PORTFOLIO_PROJECTS,
+} from "@/constants/portfolio";
 
-// Categorias para o filtro
-const CATEGORIES = ["Todos", "Cozinhas", "Dormitórios", "Salas", "Banheiros"];
-
-// Dados simulados (Placeholder)
-const PROJECTS = [
-  {
-    id: 1,
-    title: "Cozinha Minimalista",
-    category: "Cozinhas",
-    image: "/portfolio/kitchen-1.jpg",
-  },
-  {
-    id: 2,
-    title: "Suíte Master",
-    category: "Dormitórios",
-    image: "/portfolio/bedroom-1.jpg",
-  },
-  {
-    id: 3,
-    title: "Home Theater",
-    category: "Salas",
-    image: "/portfolio/living-1.jpg",
-  },
-  {
-    id: 4,
-    title: "Cozinha Gourmet",
-    category: "Cozinhas",
-    image: "/portfolio/kitchen-2.jpg",
-  },
-  {
-    id: 5,
-    title: "Closet Walk-in",
-    category: "Dormitórios",
-    image: "/portfolio/closet-1.jpg",
-  },
-  {
-    id: 6,
-    title: "Banheiro Spa",
-    category: "Banheiros",
-    image: "/portfolio/bath-1.jpg",
-  },
-];
-
+/**
+ * Seção de Portfólio.
+ * Exibe uma galeria de projetos filtrável por categorias.
+ */
 export function Portfolio() {
   const [activeCategory, setActiveCategory] = useState("Todos");
 
   const filteredProjects =
     activeCategory === "Todos"
-      ? PROJECTS
-      : PROJECTS.filter((project) => project.category === activeCategory);
+      ? PORTFOLIO_PROJECTS
+      : PORTFOLIO_PROJECTS.filter(
+          (project) => project.category === activeCategory,
+        );
 
   return (
     <section id="portfolio" className="py-24 bg-white">
       <div className="container mx-auto px-6">
-        <div className="text-center mb-16 space-y-4">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="text-center mb-16 space-y-4"
+        >
           <h2 className="font-serif text-4xl md:text-5xl text-zinc-900">
             Nosso Portfólio
           </h2>
@@ -65,11 +39,17 @@ export function Portfolio() {
             Explore nossa coleção de projetos exclusivos, onde cada detalhe é
             pensado para unir funcionalidade e beleza.
           </p>
-        </div>
+        </motion.div>
 
         {/* Filtros (Abas) */}
-        <div className="flex flex-wrap justify-center gap-4 mb-12">
-          {CATEGORIES.map((category) => (
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.2 }}
+          className="flex flex-wrap justify-center gap-4 mb-12"
+        >
+          {PORTFOLIO_CATEGORIES.map((category) => (
             <button
               key={category}
               onClick={() => setActiveCategory(category)}
@@ -82,11 +62,15 @@ export function Portfolio() {
               {category}
             </button>
           ))}
-        </div>
+        </motion.div>
 
         {/* Grid de Projetos */}
         <motion.div
           layout
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.4 }}
           className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
         >
           <AnimatePresence mode="popLayout">
