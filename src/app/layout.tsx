@@ -34,7 +34,7 @@ export default function RootLayout({
         className={`${inter.variable} ${playfair.variable} antialiased bg-stone-50 text-zinc-950 font-sans selection:bg-zinc-900 selection:text-white flex flex-col min-h-screen`}
       >
         <Header />
-        <div className="flex-1 pt-20">{children}</div>
+        <div className="flex-1">{children}</div>
         <Footer />
       </body>
     </html>

@@ -21,19 +21,19 @@ export function Header() {
         {/* Desktop Navigation */}
         <nav className="hidden md:flex items-center gap-8">
           <Link
-            href="/portfolio"
+            href="#portfolio"
             className="text-sm font-medium text-zinc-600 hover:text-zinc-900 transition-colors tracking-wide"
           >
             Portfólio
           </Link>
           <Link
-            href="/sobre"
+            href="#sobre"
             className="text-sm font-medium text-zinc-600 hover:text-zinc-900 transition-colors tracking-wide"
           >
             A Marca
           </Link>
           <Link
-            href="/contato"
+            href="#contato"
             className="text-sm font-medium text-zinc-600 hover:text-zinc-900 transition-colors tracking-wide"
           >
             Contato
@@ -54,21 +54,21 @@ export function Header() {
       {isOpen && (
         <div className="md:hidden absolute top-20 left-0 w-full bg-white border-b border-stone-100 p-6 flex flex-col gap-4 shadow-lg">
           <Link
-            href="/portfolio"
+            href="#portfolio"
             className="text-lg font-medium text-zinc-600 hover:text-zinc-900 transition-colors"
             onClick={() => setIsOpen(false)}
           >
             Portfólio
           </Link>
           <Link
-            href="/sobre"
+            href="#sobre"
             className="text-lg font-medium text-zinc-600 hover:text-zinc-900 transition-colors"
             onClick={() => setIsOpen(false)}
           >
             A Marca
           </Link>
           <Link
-            href="/contato"
+            href="#contato"
             className="text-lg font-medium text-zinc-600 hover:text-zinc-900 transition-colors"
             onClick={() => setIsOpen(false)}
           >
