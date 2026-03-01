@@ -27,7 +27,9 @@ export function smoothScroll(targetId?: string | null, offset: number = 80) {
     distance = -startPosition;
   }
 
-  const duration = 1000; // Duração em ms (1 segundo)
+  // Duração dinâmica baseada na distância para evitar sensação de "atraso" em telas menores
+  // Mínimo de 400ms (rápido para distâncias curtas), Máximo de 1000ms
+  const duration = Math.min(Math.max(Math.abs(distance) / 1.5, 400), 1000);
   let start: number | null = null;
 
   function animation(currentTime: number) {
@@ -37,6 +39,7 @@ export function smoothScroll(targetId?: string | null, offset: number = 80) {
     // Função de easing (suavização) - Ease In Out Quad
     const ease = (t: number, b: number, c: number, d: number) => {
       t /= d / 2;
+
       if (t < 1) return (c / 2) * t * t + b;
       t--;
       return (-c / 2) * (t * (t - 2) - 1) + b;
