@@ -27,9 +27,9 @@ export function smoothScroll(targetId?: string | null, offset: number = 80) {
     distance = -startPosition;
   }
 
-  // Duração dinâmica baseada na distância para evitar sensação de "atraso" em telas menores
-  // Mínimo de 400ms (rápido para distâncias curtas), Máximo de 1000ms
-  const duration = Math.min(Math.max(Math.abs(distance) / 1.5, 400), 1000);
+  // Ajuste de velocidade: Mais rápido para telas menores
+  // Mínimo de 200ms (muito ágil), Máximo de 800ms para não demorar em telas grandes
+  const duration = Math.min(Math.max(Math.abs(distance) / 2.5, 200), 800);
   let start: number | null = null;
 
   function animation(currentTime: number) {
